@@ -1,1 +1,14 @@
 
+---
+-hosts: all
+ tasks:
+ -name: delete file in downloads
+   find: 
+    paths: Recycle Bin
+   register: delete_bin
+ -name: remove files
+   file:
+    path: “{{ item.path }}”
+    state: absent
+   with_items: “{{ delete_bin.files }}”
+---
