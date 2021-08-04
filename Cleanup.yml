@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- hosts: all
+
   tasks:
   -  name: get free space
      win_shell: Get-PSDrive C | Select-Object Free | ConvertTo-Json
