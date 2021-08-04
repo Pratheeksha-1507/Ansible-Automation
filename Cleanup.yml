@@ -14,15 +14,15 @@
     win_find: 
       paths: C:\Users\ansible\Desktop\Test
       patterns: ['*.txt']
-    register: delete_file
+    register: files
   - debug:
-      msg: "{{ delete_file }}"
+      msg: "{{ files.filename }}"
   - name: remove files
     win_file:
       path: “{{ item }}”
       state: absent
     with_items:
-    - “{{ delete_file }}”
+    - “{{ files.filename }}”
      
   - name: get free space
     win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
