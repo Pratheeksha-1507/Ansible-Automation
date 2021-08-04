@@ -3,7 +3,7 @@
 
   tasks:
   -  name: get free space
-     win_shell: Get-PSDrive C | Select-Object Free | ConvertTo-Json
+     win_shell: Get-PSDrive C | Select-Object Free
      register: free_space_before_cleanup
   -  name: Set fact
      set_fact:
@@ -11,7 +11,7 @@
   -  debug:
       msg: "{{before_cleanup}}"
   -  name: get free space
-     win_shell: Get-PSDrive C | Select-Object Free | ConvertTo-Json
+     win_shell: Get-PSDrive C | Select-Object Free
      register: free_space_after_cleanup
 
   -  name: Set fact
