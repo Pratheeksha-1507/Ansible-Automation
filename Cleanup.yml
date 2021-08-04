@@ -20,14 +20,14 @@
       
   - name: Set fact
     set_fact:
-      file_name: "{{ files.filename }}"
+      file_name: "{{ files }}"
      
   - name: remove files
     win_file:
       path: “{{ item }}”
       state: absent
     with_items:
-    - “{{ file_name }}”
+    - “{{ file_name.filename }}”
      
   - name: get free space
     win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
