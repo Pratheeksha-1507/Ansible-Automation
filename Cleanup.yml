@@ -1,12 +1,30 @@
 ---
 - hosts: all
   gather_facts: no
-
+  
   tasks:
   -  name: get free space
      win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
      register: free_space_before_cleanup
     
   -  debug:
-      msg: "{{ ((free_space_before_cleanup.stdout | from_json)['Free']|int / (1024*1024*1024)) | round(2, 'floor') }} GB"
+      msg: "Free space before cleanup: {{ ((free_space_before_cleanup.stdout | from_json)['Free']|int / (1024*1024*1024)) | round(2, 'floor') }} GB"
       
+  -  name: delete file in Recyclebin
+     find: 
+      paths: Recycle Bin/
+      patterns: *.txt
+     register: delete_bin
+    
+  -  name: remove files
+     file:
+      path: “{{ item.path }}”
+      state: absent
+     with_items: “{{ delete_bin.files }}”
+     
+  -  name: get free space
+     win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
+     register: free_space_after_cleanup
+     
+  -  debug:
+      msg: "free_space_after_cleanup: {{ ((free_space_before_cleanup.stdout | from_json)['Free']|int / (1024*1024*1024)) | round(2, 'floor') }} GB"     
