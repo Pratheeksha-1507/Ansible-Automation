@@ -6,7 +6,7 @@
   -  name: get free space
      win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
      register: free_space_before_cleanup
-
+    
   -  debug:
-      msg: "{{free_space_before_cleanup}}"
+      msg: "{{ ((free_space_before_cleanup.stdout | from_json)['Free']|int / (1024*1024*1024)) | round(2, 'floor') }} GB"
       
