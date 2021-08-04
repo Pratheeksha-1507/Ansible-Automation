@@ -12,7 +12,7 @@
       
   -  name: delete file
      find: 
-      paths: 'C:\Users\ansible\Desktop\Test'
+      win_paths: 'C:\Users\ansible\Desktop\Test'
       patterns: '*.txt'
      register: delete_file
     
