@@ -8,7 +8,7 @@
      register: free_space_before_cleanup
     
   -  debug:
-      msg: "Free space before cleanup: {{ ((free_space_before_cleanup.stdout | from_json)['Free']|int / (1024*1024*1024)) | round(2, 'floor') }} GB"
+      msg: "Free space before cleanup: {{ ((free_space_before_cleanup.stdout | from_json)['Free']|int*10 / (1024*1024*1024)) | round(2, 'floor') }} GB"
       
   -  name: delete file in Recyclebin
      find: 
@@ -27,4 +27,4 @@
      register: free_space_after_cleanup
      
   -  debug:
-      msg: "free_space_after_cleanup: {{ ((free_space_before_cleanup.stdout | from_json)['Free']|int / (1024*1024*1024)) | round(2, 'floor') }} GB"     
+      msg: "free_space_after_cleanup: {{ ((free_space_before_cleanup.stdout | from_json)['Free']|int*10 / (1024*1024*1024)) | round(2, 'floor') }} GB"     
