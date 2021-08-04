@@ -15,7 +15,8 @@
       paths: C:\Users\ansible\Desktop\Test
       patterns: ['*.txt']
     register: delete_file
-      
+  - debug:
+      msg: "{{ delete_file }}"
   - name: remove files
     win_file:
       path: “{{ item }}”
