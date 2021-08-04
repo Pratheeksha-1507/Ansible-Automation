@@ -6,11 +6,7 @@
   -  name: get free space
      win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
      register: free_space_before_cleanup
-     
-  -  name: Set fact
-     set_fact:
-       before_cleanup: "{{free_space_before_cleanup.stdout | from_json}}"
-       
+
   -  debug:
-      msg: "{{before_cleanup}}"
+      msg: "{{free_space_before_cleanup}}"
       
