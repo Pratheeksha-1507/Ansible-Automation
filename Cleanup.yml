@@ -12,7 +12,7 @@
       
   -  name: delete file in Recyclebin
      find: 
-      paths: Recycle Bin/
+      paths: Recycle Bin
       patterns: *.txt
      register: delete_bin
     
