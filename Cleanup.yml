@@ -20,7 +20,8 @@
      win_file:
       path: “{{ item.path }}”
       state: absent
-     with_items: “{{ delete_file.files }}”
+     with_items: 
+       -  “{{ delete_file.files }}”
      
   -  name: get free space
      win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
