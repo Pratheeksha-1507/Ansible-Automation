@@ -18,7 +18,7 @@
       
   -  name: remove files
      win_file:
-      path: “{{ item.path }}”
+      path: “{{ item.files }}”
       state: absent
      with_items: 
        -  “{{ delete_file.files }}”
