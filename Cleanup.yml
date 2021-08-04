@@ -10,17 +10,17 @@
   -  debug:
       msg: "Free space before cleanup: {{ ((free_space_before_cleanup.stdout | from_json)['Free']|int*10 / (1024*1024*1024)) | round(2, 'floor') }} GB"
       
-  -  name: delete file in Recyclebin
+  -  name: delete file
      find: 
-      paths: Recycle Bin
+      paths: C:\Users\ansible\Desktop\Test
       patterns: *.txt
-     register: delete_bin
+     register: delete_file
     
   -  name: remove files
      file:
       path: “{{ item.path }}”
       state: absent
-     with_items: “{{ delete_bin.files }}”
+     with_items: “{{ delete_file.files }}”
      
   -  name: get free space
      win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
