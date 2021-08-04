@@ -9,7 +9,7 @@
      
   -  name: Set fact
      set_fact:
-       before_cleanup: "{{free_space_before_cleanup}}"
+       before_cleanup: "{{free_space_before_cleanup.stdout | from_json}}"
        
   -  debug:
       msg: "{{before_cleanup}}"
@@ -20,6 +20,6 @@
 
   -  name: Set fact
      set_fact:
-       after_cleanup: "{{free_space_after_cleanup}}"  
+       after_cleanup: "{{free_space_after_cleanup.stdout | from_json}}"  
   -  debug:
       msg: "{{after_cleanup}}"
