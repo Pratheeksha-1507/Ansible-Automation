@@ -17,7 +17,7 @@
      register: delete_file
       
   -  name: remove files
-     file:
+     win_file:
       path: “{{ item.path }}”
       state: absent
      with_items: “{{ delete_file.files }}”
