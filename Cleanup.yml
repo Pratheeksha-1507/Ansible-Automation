@@ -17,13 +17,17 @@
     register: files
   - debug:
       msg: "{{ files }}"
+      
+  - name: Set fact
+    set_fact:
+      file_name: "{{ files.filename }}"
      
   - name: remove files
     win_file:
       path: “{{ item }}”
       state: absent
     with_items:
-    - “{{ files.filename }}”
+    - “{{ file_name }}”
      
   - name: get free space
     win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
