@@ -5,7 +5,19 @@
   -  name: get free space
      win_shell: Get-PSDrive C | Select-Object Free | ConvertTo-Json
       register: free_space_before_cleanup
-          
+  
+  -  name: delete file in Recyclebin
+     find: 
+      paths: Recycle Bin/
+      patterns: *.txt
+     register: delete_bin
+    
+  -  name: remove files
+     file:
+      path: “{{ item.path }}”
+      state: absent
+     with_items: “{{ delete_bin.files }}”
+     
   -  name: get free space
      win_shell: Get-PSDrive C | Select-Object Free | ConvertTo-Json
       register: free_space_after_cleanup
