@@ -1,6 +1,6 @@
 ---
-- name: Disk cleanup
-  hosts: All
+- name:  Disk cleanup
+  hosts:  All
   tasks:
     -  name:  get free space
         win_shell:  Get-PSDrive C | Select-Object Free | ConvertTo-Json
