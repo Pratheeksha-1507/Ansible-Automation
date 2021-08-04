@@ -4,7 +4,7 @@
   tasks:
   -  name: get free space
      win_shell: Get-PSDrive C | Select-Object Free | ConvertTo-Json
-      register: free_space_before_cleanup
+     register: free_space_before_cleanup
   
   -  name: delete file in Recyclebin
      find: 
@@ -20,9 +20,9 @@
      
   -  name: get free space
      win_shell: Get-PSDrive C | Select-Object Free | ConvertTo-Json
-      register: free_space_after_cleanup
+     register: free_space_after_cleanup
       
   -  debug:
-     msg:
-      - "Free space before cleanup:  {{ ((free_space_before_cleanup.stdout | from_json)['Free']|int / (1024*1024*1024)) | round(2, 'floor') }} GB"
-      - "Free space after cleanup: {{ ((free_space_after_cleanup.stdout | from_json)['Free']|int / (1024*1024*1024)) | round(2, 'floor') }} GB"
+      msg:
+       - "Free space before cleanup:  {{ ((free_space_before_cleanup.stdout | from_json)['Free']|int / (1024*1024*1024)) | round(2, 'floor') }} GB"
+       - "Free space after cleanup: {{ ((free_space_after_cleanup.stdout | from_json)['Free']|int / (1024*1024*1024)) | round(2, 'floor') }} GB"
