@@ -24,10 +24,10 @@
      
   - name: remove files
     win_file:
-      filename: “{{ item.filename }}”
+      path: “{{ item.path }}”
       state: absent
     with_items:
-    - “{{ filename: files }}”
+    - “{{ file_name.files }}”
      
   - name: get free space
     win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
