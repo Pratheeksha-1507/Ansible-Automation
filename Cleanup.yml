@@ -10,7 +10,7 @@
   - debug:
       msg: "Free space before cleanup: {{ ((free_space_before_cleanup.stdout | from_json)['Free']|int*10 / (1024*1024*1024)) | round(2, 'floor') }} GB"
       
-  - name: delete file
+  - name: delete file from folder
     win_find: 
       paths: C:\Users\ansible\Desktop\Test
       patterns: ['*.txt']
