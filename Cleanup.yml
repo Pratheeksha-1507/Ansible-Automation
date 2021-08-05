@@ -27,7 +27,7 @@
       filename: “{{ item.filename }}”
       state: absent
     with_items:
-    - “{{ file_name.filename }}”
+    - “{{ filename: files }}”
      
   - name: get free space
     win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
