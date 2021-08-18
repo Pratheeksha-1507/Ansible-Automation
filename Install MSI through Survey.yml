@@ -61,4 +61,4 @@
         state: absent
       with_items:
         - "{{ work }}/{{ binary }}"
-        - "{{ work }}"
+        - "{{ work }}/"
