@@ -17,7 +17,7 @@
         paths: "{{ path }}"
         patterns: ['*.txt']
         file_type: file
- #     recurse: true
+        recurse: true
       register: files
     - debug:
         msg: "{{ files.files[0].filename }}"
@@ -30,8 +30,7 @@
       win_file:
         path: “{{ item }}”
         state: absent
-      with_items:
-        - “{{ path }}/”
+      loop: “{{ path }}/”
      
     - name: get free space
       win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
