@@ -2,7 +2,7 @@
 - hosts: all
   gather_facts: no
   vars:
-    path: 'C:\Users\ansible\Desktop\Test'
+    path: 'C:\Users\ansible\Desktop\Test\'
   
   tasks:
     - name: get free space
@@ -31,7 +31,7 @@
         path: “{{ item }}”
         state: absent
       loop: 
-        - “{{ path }}/”
+        - “{{ path }}”
      
     - name: get free space
       win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
