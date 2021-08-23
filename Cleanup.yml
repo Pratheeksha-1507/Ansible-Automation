@@ -28,7 +28,7 @@
      
     - name: remove files
       win_file:
-        path: 'C:\Test_Cleanup'
+        path: 'C:\Test_Cleanup\'
         patterns: ['*.txt']
         file_type: file
         state: absent
