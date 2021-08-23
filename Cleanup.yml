@@ -28,11 +28,12 @@
      
     - name: remove files
       win_file:
-        path: “{{ item }}”
+        path: 'C:\Test_Cleanup'
+        patterns: ['*.txt']
         file_type: file
         state: absent
-      loop: 
-        - “{{ files.files[0].path }}”
+#      loop: 
+#        - “{{ files.files[0].path }}”
      
     - name: get free space
       win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
