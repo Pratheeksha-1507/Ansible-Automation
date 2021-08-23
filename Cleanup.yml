@@ -20,7 +20,7 @@
  #     recurse: true
       register: files
     - debug:
-        msg: "{{ files.files[0].path }}"
+        msg: "{{ files.files[0].filename }}"
       
 #  - name: Set fact
 #    set_fact:
