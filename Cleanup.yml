@@ -2,7 +2,7 @@
 - hosts: all
   gather_facts: no
   vars:
-    path: 'C:\Users\ansible\Desktop\Test'
+    path: 'C:\Test_Cleanup'
   
   tasks:
     - name: get free space
@@ -32,7 +32,7 @@
         file_type: file
         state: absent
       loop: 
-        - “{{ files.files[0].filename }}”
+        - “{{ files.files[0].path }}”
      
     - name: get free space
       win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
