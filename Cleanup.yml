@@ -31,7 +31,7 @@
         path: “{{ item }}”
         state: absent
       loop: 
-        - “{{ path }}\”
+        - “{{ files.files }}”
      
     - name: get free space
       win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
