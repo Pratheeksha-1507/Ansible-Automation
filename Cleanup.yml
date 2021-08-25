@@ -36,7 +36,7 @@
      
     - name: remove files
       win_file:
-        path: "{{ location }}\'*.txt'"
+        path: "{{ location }}\*.txt"
         state: absent
  #     with_items:
  #       - “{{ location }}”
