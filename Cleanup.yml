@@ -3,6 +3,7 @@
   gather_facts: no
   vars:
     location: 'C:\Test_Cleanup'
+    test: 'test.txt'
   
   tasks:
     - name: get free space
@@ -11,7 +12,17 @@
     
     - debug:
         msg: "Free space before cleanup: {{ ((free_space_before_cleanup.stdout | from_json)['Free']|int*10 / (1024*1024*1024)) | round(2, 'floor') }} GB"
-      
+
+    - name: create the directory in C drive
+      win_file:
+        path: "{{ location }}"
+        state: directory
+
+    - name: create the file in directory in C drive
+      win_file:
+        path: "{{ location }}/{{ test }}"
+        state: touch
+        
     - name: delete file from folder
       win_find: 
         paths: "{{ location }}"
@@ -28,7 +39,7 @@
         path: "{{ item }}"
         state: absent
       with_items:
-         - “{{ location }}/”
+         - “{{ location }}/{{ test }}”
      
     - name: get free space
       win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
