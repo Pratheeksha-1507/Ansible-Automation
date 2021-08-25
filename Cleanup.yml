@@ -2,7 +2,7 @@
 - hosts: all
   gather_facts: no
   vars:
-    location: 'C:\Test_Cleanup\'
+    location: 'C:\Test_Cleanup'
   
   tasks:
     - name: get free space
@@ -29,11 +29,9 @@
     - name: remove files
       win_file:
         path: "{{ item }}"
-        patterns: ['*.txt']
-        file_type: file
         state: absent
       with_items: 
-        - “{{ location }}\”
+        - “{{ location }}/”
      
     - name: get free space
       win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
