@@ -28,7 +28,7 @@
      
     - name: remove files
       win_file:
-        path: "{{ items }}"
+        path: "{{ item }}"
         patterns: ['*.txt']
         file_type: file
         state: absent
