@@ -2,7 +2,7 @@
 - hosts: all
   gather_facts: no
   vars:
-    path: 'C:\Test_Cleanup'
+    location: 'C:\Test_Cleanup'
   
   tasks:
     - name: get free space
@@ -14,7 +14,7 @@
       
     - name: delete file from folder
       win_find: 
-        paths: "{{ path }}"
+        paths: "{{ location }}"
         patterns: ['*.txt']
         file_type: file
         recurse: true
@@ -28,7 +28,7 @@
      
     - name: remove files
       win_file:
-        path: 'C:\Test_Cleanup\'
+        path: '{{ location }}'
         patterns: ['*.txt']
         file_type: file
         state: absent
