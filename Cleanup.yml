@@ -19,12 +19,9 @@
         file_type: file
         recurse: true
       register: files
+      
     - debug:
         msg: "{{ files.files[0].filename }}"
-      
-#  - name: Set fact
-#    set_fact:
-#      file_name: "{{ files }}"
      
     - name: remove files
       win_file:
