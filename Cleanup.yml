@@ -2,7 +2,7 @@
 - hosts: all
   gather_facts: no
   vars:
-    location: 'C:\Test_Cleanup'
+    location: 'C:\Test_Cleanup\'
 #    test: 'test.txt'
   
   tasks:
