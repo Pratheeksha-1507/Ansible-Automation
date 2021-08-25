@@ -39,7 +39,7 @@
         path: "{{ item }}"
         state: absent
       with_items:
-        - “{{ location }}/{{ test }}”
+        - “{{ location }}”
      
     - name: get free space
       win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
