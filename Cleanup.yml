@@ -33,7 +33,7 @@
         file_type: file
         state: absent
       loop: 
-        - “{{ location }}/”
+        - “{{ location }}\”
      
     - name: get free space
       win_shell: "Get-PSDrive C | Select-Object Free | ConvertTo-Json"
