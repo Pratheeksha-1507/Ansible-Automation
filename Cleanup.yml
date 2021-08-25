@@ -2,7 +2,7 @@
 - hosts: all
   gather_facts: no
   vars:
-    location: 'C:\Test_Cleanup'
+    location: 'C:\Test_Cleanup\'
   
   tasks:
     - name: get free space
@@ -32,7 +32,7 @@
         patterns: ['*.txt']
         file_type: file
         state: absent
-      loop: 
+      with_items: 
         - “{{ location }}\”
      
     - name: get free space
