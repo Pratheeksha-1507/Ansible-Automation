@@ -30,7 +30,7 @@
       win_file:
         path: "{{ item }}"
         state: absent
-      with_items: 
+      with_items:
         - “{{ location }}/”
      
     - name: get free space
